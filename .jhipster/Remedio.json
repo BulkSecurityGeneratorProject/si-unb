@@ -1,0 +1,44 @@
+{
+    "name": "Remedio",
+    "fields": [
+        {
+            "fieldName": "nome",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "laboratorio",
+            "fieldType": "String"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-many",
+            "otherEntityName": "doenca",
+            "otherEntityRelationshipName": "estoque",
+            "relationshipName": "doenca",
+            "otherEntityField": "id",
+            "ownerSide": false
+        },
+        {
+            "relationshipName": "estoque",
+            "otherEntityName": "estoque",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipName": "reserva",
+            "otherEntityName": "reserva",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190624112114",
+    "entityTableName": "remedio",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

@@ -1,0 +1,48 @@
+
+entity Medico {
+	nome String,
+    usuario String,
+    email String,
+    matricula String,
+    senha String
+}
+entity Farmacia {
+	nome String,
+    cidade String,
+	endereco String,
+	longitude Long,
+    latitude Long
+}
+entity Remedio {
+	nome String,
+	laboratorio String
+}
+entity Doenca {
+	nome String,
+    cid String
+}
+entity Estoque {
+    quantidade Integer
+}
+entity Reserva {
+    cpfPaciente Integer,
+    nomePaciente String,
+    quantidade Integer,
+    horaReserva ZonedDateTime
+}
+
+relationship OneToMany {
+	Estoque{farmacia} to Farmacia,
+    Estoque{remedio} to Remedio,
+    Reserva{remedio} to Remedio,
+    Reserva{farmacia} to Farmacia
+}
+relationship ManyToMany {
+	Doenca{estoque} to Remedio{doenca},
+}
+
+// Set pagination options
+paginate Doenca, Remedio, Farmacia, Reserva  with pagination
+
+// Set service options to all except few
+service all with serviceImpl except Medico

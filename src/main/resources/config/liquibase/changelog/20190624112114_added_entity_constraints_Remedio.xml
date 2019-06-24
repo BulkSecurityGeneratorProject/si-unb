@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <!--
+        Added the constraints for entity Remedio.
+    -->
+    <changeSet id="20190624112114-2" author="jhipster">
+        
+        <addForeignKeyConstraint baseColumnNames="estoque_id"
+                                 baseTableName="remedio"
+                                 constraintName="fk_remedio_estoque_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="estoque"/>
+
+        <addForeignKeyConstraint baseColumnNames="reserva_id"
+                                 baseTableName="remedio"
+                                 constraintName="fk_remedio_reserva_id"
+                                 referencedColumnNames="id"
+                                 referencedTableName="reserva"/>
+
+    </changeSet>
+</databaseChangeLog>

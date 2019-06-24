@@ -1,0 +1,39 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="reserva">
+            <h2><span>Reserva</span> {{reserva.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Cpf Paciente</span></dt>
+                <dd>
+                    <span>{{reserva.cpfPaciente}}</span>
+                </dd>
+                <dt><span>Nome Paciente</span></dt>
+                <dd>
+                    <span>{{reserva.nomePaciente}}</span>
+                </dd>
+                <dt><span>Quantidade</span></dt>
+                <dd>
+                    <span>{{reserva.quantidade}}</span>
+                </dd>
+                <dt><span>Hora Reserva</span></dt>
+                <dd>
+                    <span>{{reserva.horaReserva}}</span>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/reserva', reserva.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

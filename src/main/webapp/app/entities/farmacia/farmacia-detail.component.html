@@ -1,0 +1,55 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="farmacia">
+            <h2><span>Farmacia</span> {{farmacia.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Nome</span></dt>
+                <dd>
+                    <span>{{farmacia.nome}}</span>
+                </dd>
+                <dt><span>Cidade</span></dt>
+                <dd>
+                    <span>{{farmacia.cidade}}</span>
+                </dd>
+                <dt><span>Endereco</span></dt>
+                <dd>
+                    <span>{{farmacia.endereco}}</span>
+                </dd>
+                <dt><span>Longitude</span></dt>
+                <dd>
+                    <span>{{farmacia.longitude}}</span>
+                </dd>
+                <dt><span>Latitude</span></dt>
+                <dd>
+                    <span>{{farmacia.latitude}}</span>
+                </dd>
+                <dt><span>Estoque</span></dt>
+                <dd>
+                    <div *ngIf="farmacia.estoque">
+                        <a [routerLink]="['/estoque', farmacia.estoque?.id, 'view']">{{farmacia.estoque?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Reserva</span></dt>
+                <dd>
+                    <div *ngIf="farmacia.reserva">
+                        <a [routerLink]="['/reserva', farmacia.reserva?.id, 'view']">{{farmacia.reserva?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/farmacia', farmacia.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

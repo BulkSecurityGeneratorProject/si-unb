@@ -1,0 +1,43 @@
+<div class="row justify-content-center">
+    <div class="col-8">
+        <div *ngIf="remedio">
+            <h2><span>Remedio</span> {{remedio.id}}</h2>
+            <hr>
+            <jhi-alert-error></jhi-alert-error>
+            <dl class="row-md jh-entity-details">
+                <dt><span>Nome</span></dt>
+                <dd>
+                    <span>{{remedio.nome}}</span>
+                </dd>
+                <dt><span>Laboratorio</span></dt>
+                <dd>
+                    <span>{{remedio.laboratorio}}</span>
+                </dd>
+                <dt><span>Estoque</span></dt>
+                <dd>
+                    <div *ngIf="remedio.estoque">
+                        <a [routerLink]="['/estoque', remedio.estoque?.id, 'view']">{{remedio.estoque?.id}}</a>
+                    </div>
+                </dd>
+                <dt><span>Reserva</span></dt>
+                <dd>
+                    <div *ngIf="remedio.reserva">
+                        <a [routerLink]="['/reserva', remedio.reserva?.id, 'view']">{{remedio.reserva?.id}}</a>
+                    </div>
+                </dd>
+            </dl>
+
+            <button type="submit"
+                    (click)="previousState()"
+                    class="btn btn-info">
+                <fa-icon [icon]="'arrow-left'"></fa-icon>&nbsp;<span> Back</span>
+            </button>
+
+            <button type="button"
+                    [routerLink]="['/remedio', remedio.id, 'edit']"
+                    class="btn btn-primary">
+                <fa-icon [icon]="'pencil-alt'"></fa-icon>&nbsp;<span> Edit</span>
+            </button>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,44 @@
+{
+    "name": "Reserva",
+    "fields": [
+        {
+            "fieldName": "cpfPaciente",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "nomePaciente",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "quantidade",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "horaReserva",
+            "fieldType": "ZonedDateTime"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "remedio",
+            "otherEntityRelationshipName": "reserva",
+            "relationshipName": "remedio"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "farmacia",
+            "otherEntityRelationshipName": "reserva",
+            "relationshipName": "farmacia"
+        }
+    ],
+    "changelogDate": "20190624112117",
+    "entityTableName": "reserva",
+    "dto": "no",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}

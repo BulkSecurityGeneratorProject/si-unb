@@ -1,0 +1,85 @@
+<div>
+    <h2 id="page-heading">
+        <span>Farmacias</span>
+        <button id="jh-create-entity" class="btn btn-primary float-right jh-create-entity create-farmacia" [routerLink]="['/farmacia/new']">
+            <fa-icon [icon]="'plus'"></fa-icon>
+            <span >
+            Create new Farmacia
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <br/>
+    <div class="alert alert-warning" *ngIf="farmacias?.length === 0">
+        <span>No farmacias found</span>
+    </div>
+    <div class="table-responsive" *ngIf="farmacias?.length > 0">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="transition.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="nome"><span>Nome</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="cidade"><span>Cidade</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="endereco"><span>Endereco</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="longitude"><span>Longitude</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="latitude"><span>Latitude</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="estoque.id"><span>Estoque</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th jhiSortBy="reserva.id"><span>Reserva</span> <fa-icon [icon]="'sort'"></fa-icon></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr *ngFor="let farmacia of farmacias ;trackBy: trackId">
+                <td><a [routerLink]="['/farmacia', farmacia.id, 'view' ]">{{farmacia.id}}</a></td>
+                <td>{{farmacia.nome}}</td>
+                <td>{{farmacia.cidade}}</td>
+                <td>{{farmacia.endereco}}</td>
+                <td>{{farmacia.longitude}}</td>
+                <td>{{farmacia.latitude}}</td>
+                <td>
+                    <div *ngIf="farmacia.estoque">
+                        <a [routerLink]="['../estoque', farmacia.estoque?.id, 'view' ]" >{{farmacia.estoque?.id}}</a>
+                    </div>
+                </td>
+                <td>
+                    <div *ngIf="farmacia.reserva">
+                        <a [routerLink]="['../reserva', farmacia.reserva?.id, 'view' ]" >{{farmacia.reserva?.id}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group">
+                        <button type="submit"
+                                [routerLink]="['/farmacia', farmacia.id, 'view' ]"
+                                class="btn btn-info btn-sm">
+                            <fa-icon [icon]="'eye'"></fa-icon>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/farmacia', farmacia.id, 'edit']"
+                                class="btn btn-primary btn-sm">
+                            <fa-icon [icon]="'pencil-alt'"></fa-icon>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', 'farmacia', { outlets: { popup: farmacia.id + '/delete'} }]"
+                                replaceUrl="true"
+                                queryParamsHandling="merge"
+                                class="btn btn-danger btn-sm">
+                            <fa-icon [icon]="'times'"></fa-icon>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <div [hidden]="farmacias?.length === 0">
+        <div class="row justify-content-center">
+            <jhi-item-count [page]="page" [total]="totalItems" [maxSize]="5" [itemsPerPage]="itemsPerPage"></jhi-item-count>
+        </div>
+        <div class="row justify-content-center">
+            <ngb-pagination [collectionSize]="totalItems" [(page)]="page" [pageSize]="itemsPerPage" [maxSize]="5" [rotate]="true" [boundaryLinks]="true" (pageChange)="loadPage(page)"></ngb-pagination>
+        </div>
+    </div>
+</div>

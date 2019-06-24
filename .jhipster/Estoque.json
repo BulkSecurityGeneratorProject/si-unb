@@ -1,0 +1,32 @@
+{
+    "name": "Estoque",
+    "fields": [
+        {
+            "fieldName": "quantidade",
+            "fieldType": "Integer"
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "farmacia",
+            "otherEntityRelationshipName": "estoque",
+            "relationshipName": "farmacia"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "remedio",
+            "otherEntityRelationshipName": "estoque",
+            "relationshipName": "remedio"
+        }
+    ],
+    "changelogDate": "20190624112116",
+    "entityTableName": "estoque",
+    "dto": "no",
+    "pagination": "no",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": "*"
+}
